@@ -2,26 +2,25 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+from encode import encode_midi
+from decode import decode_tokens
 # ============================================================
 # DEVICE (MPS / CPU)
 # ============================================================
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print("Using device:", device)
 
+
+tokens = encode_midi('data/sample1.mid')
 # ============================================================
 # 1. RAW TEXT
 # ============================================================
-text = """
-the cat sat on the mat
-the dog sat on the log
-the cat saw the dog
-the dog saw the cat
-"""
 
+
+text = ' '.join(tokens)
 # increase data size (safe)
-text = text * 1000
-words = text.lower().split()
+text = text * 100
+words = text.upper().split()
 
 # ============================================================
 # 2. TOKENIZER (word-level)
@@ -169,7 +168,7 @@ for epoch in range(400):
 # 6. GENERATION
 # ============================================================
 @torch.no_grad()
-def generate(start_words, max_new=10):
+def generate(start_words, max_new=50):
     model.eval()
 
     idx = torch.tensor(
@@ -187,4 +186,6 @@ def generate(start_words, max_new=10):
     return " ".join(itos[i.item()] for i in idx[0])
 
 print("\nGenerated:")
-print(generate(["the", "cat"]))
+output_tokens = generate(["TEMPO_68", "TIME_SHIFT_2600"])
+output_tokens = output_tokens.split()
+decode_tokens(output_tokens, 'data/output_tranformer.mid')
