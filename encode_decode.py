@@ -193,14 +193,14 @@ def decode_tokens(tokens, output_path):
     pm.write(output_path)
     return pm
 
-
-tokens = encode_midi('data/sample1.mid')
-print("encoded tokens:", tokens)
-# ============================================================
-# 1. RAW TEXT
-# ============================================================
-
-
-text = ' '.join(tokens)
-# increase data size (safe) with spce
-decode_tokens(tokens, 'data/og_output.mid')
+#
+# tokens = encode_midi('data/sample1.mid')
+# print("encoded tokens:", tokens)
+# # ============================================================
+# # 1. RAW TEXT
+# # ============================================================
+#
+#
+# text = ' '.join(tokens)
+# # increase data size (safe) with spce
+# decode_tokens(tokens, 'data/og_output.mid')

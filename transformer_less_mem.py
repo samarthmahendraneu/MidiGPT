@@ -15,7 +15,37 @@ print("Using device:", device)
 # ============================================================
 # 1. LOAD MIDI → TOKENS
 # ============================================================
-tokens = encode_midi("data/sample1.mid")
+
+# for files in data/giant_midiV1/ folder, just 10 mid files for testing
+# a-jag-je-t-aime-juliette-oxc7fd0zn8o.mid
+# aaron-michael-piano-course-v8wvkk-1b2c.mid
+# abel-frederic-lola-polka-slnjf0uiqrw.mid
+# abramowitsch-a-3-nocturnes-lkk-7l2ppw8.mid
+# abreu-zequinha-tico-tico-no-fubá-kyeufpjuwfc.mid
+# achron-joseph-2-pieces-op-56-snqknjnxsoe.mid
+# abt-franz-7-lieder-aus-dem-buche-der-liebe-op-39-k33a-r6ikea.mid
+# achron-joseph-symphonic-variations-and-sonata-op-39-rtrrqwo2hng.mid
+# ackerman-gabriel-j-ballade-no-1-op-5-koy5xwvk5c4.mid
+# adalid-marcial-del-24-romances-sans-paroles-fazuwhltgtm.mid
+# adalid-marcial-del-sonata-for-piano-four-hands-5vmrdbna2o4.mid
+
+midi_file = ["a-jag-je-t-aime-juliette-oxc7fd0zn8o.mid",
+                "aaron-michael-piano-course-v8wvkk-1b2c.mid",
+                "abel-frederic-lola-polka-slnjf0uiqrw.mid",
+                "abramowitsch-a-3-nocturnes-lkk-7l2ppw8.mid",
+                "abreu-zequinha-tico-tico-no-fubá-kyeufpjuwfc.mid",
+                "achron-joseph-2-pieces-op-56-snqknjnxsoe.mid",
+                "abt-franz-7-lieder-aus-dem-buche-der-liebe-op-39-k33a-r6ikea.mid",
+                "achron-joseph-symphonic-variations-and-sonata-op-39-rtrrqwo2hng.mid",
+                "ackerman-gabriel-j-ballade-no-1-op-5-koy5xwvk5c4.mid",
+                "adalid-marcial-del-24-romances-sans-paroles-fazuwhltgtm.mid",
+                "adalid-marcial-del-sonata-for-piano-four-hands-5vmrdbna2o4.mid"]
+
+tokens = []
+for file in midi_file:
+    _ = encode_midi("data/giant_midiV1/" + file)
+    tokens += _
+
 tokens = [t.upper() for t in tokens]
 
 # ============================================================
